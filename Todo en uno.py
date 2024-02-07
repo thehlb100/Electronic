@@ -1,6 +1,5 @@
 import math 
 from random import randint
-score = 0 
 
 #PROGRAMAS
 def calcularondacompleta () :
@@ -103,32 +102,100 @@ def ipgenerator ():
  print ("-Clase B (3)")
  print ("-Clase C (4)")
  clase =int(input())
+ Digito2 = randint(1,255)
+ Digito3 = randint(1,255)
+ Digito4 = randint (1,255)
 
  if clase ==1:
   Digito1 = randint(1,255)
-  Digito2 = randint(1,255)
-  Digito3 = randint(1,255)
-  Digito4 = randint (1,255)
-  print(f'La ip generada es = {Digito1}.{Digito2}.{Digito3}.{Digito4}')
-       
  if clase==2:
   Digito1 = randint(1,126)
-  Digito2 = randint(1,255)
-  Digito3 = randint(1,255)
-  Digito4 = randint (1,255)
-  print(f'La ip generada es = {Digito1}.{Digito2}.{Digito3}.{Digito4}')
  if clase ==3:
   Digito1 = randint(127,191)
-  Digito2 = randint(1,255)
-  Digito3 = randint(1,255)
-  Digito4 = randint (1,255)
-  print(f'La ip generada es = {Digito1}.{Digito2}.{Digito3}.{Digito4}')
  if clase==4:
   Digito1 = randint(192,220)
-  Digito2 = randint(1,255)
-  Digito3 = randint(1,255)
-  Digito4 = randint (1,255)
-  print(f'La ip generada es = {Digito1}.{Digito2}.{Digito3}.{Digito4}')
+ print(f'La ip generada es = {Digito1}.{Digito2}.{Digito3}.{Digito4}')
+ 
+def calculadora_transistores():
+  print ("Que deseas calcular?")
+  print ("-Intensidad del emisor (1)")
+  opcion =int (input())
+  if opcion ==1:
+   print ("Cual es el valor de la intensidad de la base (Ib)")
+   Ib = int (input())
+   print ("Cual es el valor de la intensidad del colector (Ic)")
+   Ic = int (input ())
+   Ie = Ib + Ic
+   print ("El valor de la intensidad del emisor es =", Ie)
+  if opcion ==2:
+   print ("Cual es el valor de Vce?")
+   Vce = int(input())
+   print("Cual es el valor de Vbe?")
+   Vcb= int(input())
+   Vce = Vce + Vcb
+   print ("El valor de Vce es =", Vce)
+
+def calculate_subnet_info():
+    used_hosts = int(input("Enter the number of hosts: "))
+    used_nets = int(input("Enter the number of networks: "))
+    ip = input("Enter the IP address: ")
+
+    results = ""
+    
+
+    # Extract the first octet to determine the IP class
+    first_octet = int(ip.split('.')[0])
+
+    # Determine the IP class
+    ip_class = ""
+    if 1 <= first_octet <= 126:
+        ip_class = 'A'
+    elif 128 <= first_octet <= 191:
+        ip_class = 'B'
+    elif 192 <= first_octet <= 223:
+        ip_class = 'C'
+    else:
+        return "Invalid IP address. This function only supports Class A, B, and C addresses."
+
+    # Calculate the necessary subnet bits
+    total_subnets = 2 ** (math.ceil(math.log2(used_nets)))
+    subnet_bits = math.ceil(math.log2(total_subnets))
+
+    # Calculate the necessary host bits
+    total_hosts = 2 ** (math.ceil(math.log2(used_hosts + 2)))  # '+ 2' accounts for network and broadcast addresses
+    host_bits = math.ceil(math.log2(total_hosts))
+
+    # Determine the default subnet mask based on the IP class
+    default_subnet_mask = ""
+    if ip_class == 'A':
+        default_subnet_mask = '255.0.0.0'
+    elif ip_class == 'B':
+        default_subnet_mask = '255.255.0.0'
+    elif ip_class == 'C':
+        default_subnet_mask = '255.255.255.0'
+
+    # Calculate the applied subnet mask based on the number of subnet bits
+    binary4 = str('1'*subnet_bits) + ('0'*host_bits) 
+    binary = int(binary4)
+
+    decimal, i, n = 0, 0, 0
+    while(binary != 0):
+        dec = binary%10
+        decimal = decimal + dec * pow(2, i)
+        binary = binary//10
+        i += 1
+   
+
+    # Display the results
+    result_string = f"""
+        IP Address: {ip}
+        IP Class: {ip_class}
+        Default Subnet Mask: {default_subnet_mask}
+        Applied Subnet Mask: {decimal}
+        Subnet Bits: {subnet_bits}
+        Host Bits: {host_bits}
+    """
+    print(result_string)
 
 
 #INTRODUCCIÓN
@@ -192,7 +259,11 @@ print("-Onda completa (2)")
 print("-Multiplicación dos nºs (3)")
 print("-Calculadora de Vmax y Vef (4)")
 print("-Calculadora de perdidas por distancia en altavoces (5)")
-print ("Generador de IP Random (6)")
+print("-Generador de IP Random (6)")
+print("-Transformadores(7)")
+print("-Resolvedor de IP(8)")
+
+#SELECCIÓN
 Seleccion = int(input())
 if Seleccion ==1:
  calculadoramediaonda()
@@ -206,3 +277,7 @@ if Seleccion ==5:
  Perdidas_por_distancia()
 if Seleccion ==6:
  ipgenerator()
+if Seleccion ==7:
+ calculadora_transistores()
+if Seleccion ==8:
+ calculate_subnet_info()

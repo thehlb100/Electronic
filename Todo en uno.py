@@ -197,6 +197,75 @@ def calculate_subnet_info():
     """
     print(result_string)
 
+#CABLE DIAMETER CALCULATOR
+def Intensidad_Voltaje():
+ print ('Cuanta intensidad debe de circular por el cable?')
+ Intensidad = int(input())
+ print ('Cúal es la longitud del cable?')
+ Longitud = int(input())
+ print ('Cúal es el voltaje que pasa por el cable')
+ Voltaje = int(input())
+ Resistencia = 0.5/Intensidad
+ Calculo_seccion = ((0.017*Longitud)/Resistencia)
+ print (f'Tu cable necesita una seccion de {Calculo_seccion}')
+print ('Calculator made by TheHlb100')
+
+def Potencia_Voltaje():
+  print ('Cuanta potencia debe de circular por el cable?')
+  Potencia = int(input())
+  print ('Cúal es la longitud del cable?')
+  Longitud = int(input())
+  print ('Cúal es el voltaje que pasa por el cable')
+  Voltaje = int(input())
+  Intensidad = Potencia/Voltaje
+  Resistencia = 0.5/Intensidad
+  Calculo_seccion = ((0.017*Longitud)/Resistencia)
+  print (f'Tu cable necesita una seccion de {Calculo_seccion}')
+
+
+def Calculadora_Seccion_Cable():
+ print('Bienvenido a la calculadora de la seccion de cable')
+ print ('Elige entre estas opciones')
+ print ('Me proporcionan intensidad y voltaje(1)')
+ print ('Me proporcionan potencia y voltaje (2)')
+ print ('Me proporcionan intensidad y potencia (3)')
+ Eleccion = int(input())
+ if Eleccion == 1:
+  print ('Cuanta intensidad debe de circular por el cable?')
+  Intensidad = int(input())
+  print ('Cúal es la longitud del cable?')
+  Longitud = int(input())
+  print ('Cúal es el voltaje que pasa por el cable')
+  Voltaje = int(input())
+  Resistencia = 0.5/Intensidad
+  Calculo_seccion = ((0.017*Longitud)/Resistencia)
+  print (f'Tu cable necesita una seccion de {Calculo_seccion}')
+  print ('Calculator made by TheHlb100')
+  
+ if Eleccion ==2:
+  print ('Cuanta potencia debe de circular por el cable?')
+  Potencia = int(input())
+  print ('Cúal es la longitud del cable?')
+  Longitud = int(input())
+  print ('Cúal es el voltaje que pasa por el cable')
+  Voltaje = int(input())
+  Intensidad = Potencia/Voltaje
+  Resistencia = 0.5/Intensidad
+  Calculo_seccion = ((0.017*Longitud)/Resistencia)
+  print (f'Tu cable necesita una seccion de {Calculo_seccion}')
+
+ if Eleccion ==3: 
+  print ('Cuanta potencia debe de circular por el cable?')
+  Potencia = int(input())
+  print ('Cúal es la longitud del cable?')
+  Longitud = int(input())
+  print ('Cúal es la intensidad que pasa por el cable')
+  Intensidad = int(input())
+  Resistencia = 0.5/Intensidad
+  Calculo_seccion = ((0.017*Longitud)/Resistencia)
+  print (f'Tu cable necesita una seccion de {Calculo_seccion}')
+
+
 
 #INTRODUCCIÓN
 print("thehlb100's calculator")
@@ -262,6 +331,9 @@ print("-Calculadora de perdidas por distancia en altavoces (5)")
 print("-Generador de IP Random (6)")
 print("-Transformadores(7)")
 print("-Resolvedor de IP(8)")
+print ('Calculadora sección cable (9)')
+print ('NE555 (10)')
+print ('Calculadora pérdidas por distnacia (11)')
 
 #SELECCIÓN
 Seleccion = int(input())
@@ -281,3 +353,78 @@ if Seleccion ==7:
  calculadora_transistores()
 if Seleccion ==8:
  calculate_subnet_info()
+if Seleccion ==9:
+  Calculadora_Seccion_Cable()
+if Seleccion ==10:
+ def NE555_MONOESTABLE():
+  print ('Cúal es la capacidad del condensador en uF?')
+  CapacidadCondensador = int(input())
+  print ('Cúal es el valor de R1?')
+  Resistencia_1 = int (input())
+  Tiempo_Duracion = 1,1*Resistencia_1*CapacidadCondensador
+  print(f'EL led durará encendido {Tiempo_Duracion}')
+
+
+ #TIEMPO DURACIÓN NE555 ASTABLE
+ def NE555_ASTABLE_SIN_POT():
+  print ('Cúal es la capacidad del condensador (uF)')
+  CapacidadCondensador = int(input())
+  print ('Cúal es el valor de R1?')
+  Resistencia_1 = int (input())
+  print ('Cúal es el valor de R2?')
+  Resistencia_2 = int (input())
+  ResistenciaTotal = Resistencia_1 + Resistencia_2
+  Tiempo_Duracion_1 = 0,7 *(ResistenciaTotal*CapacidadCondensador)
+  Tiempo_Duracion_2 = 0,7*(Resistencia_2*CapacidadCondensador)
+  print (f'El tiempo que dura el led 1 encendido es de {Tiempo_Duracion_1}')
+  print (f'El tiempo que dura el led 2 encendido es de {Tiempo_Duracion_2}')
+
+
+ def NE555_ASTABLE_POT_VARIABLE():
+  print ('Cúal es la capacidad del condensador (uF)?')
+  CapacidadCondensador = int(input())
+  print ('Cúal es el valor de R1')
+  Resistencia_1 = int(input())
+  print ('Cúal es el valor de la Resistencia Variable 1')
+  Resistencia_Variable_1 = int(input())
+  print ('Cúal es el valor de R2?')
+  Resistencia_2 = int(input())
+  print ('Cúal es el valor de la Resistencia Variable 2 ')
+  Resistencia_Variable_2 = int(input())
+  Tiempo_Duracion_1 = 0,7*(Resistencia_1*CapacidadCondensador*Resistencia_Variable_1*Resistencia_2*Resistencia_Variable_2)
+  Tiempo_Duracion_3 = 0,7*(Resistencia_1*CapacidadCondensador*Resistencia_2)
+  Tiempo_Duracion_2 = 0,7*(CapacidadCondensador*Resistencia_2*Resistencia_Variable_2)
+  Tiempo_Duracion_4 = 0,7*(CapacidadCondensador*Resistencia_2)
+  print (f'El tiempo máximo que dura el led 1 encendido es de {Tiempo_Duracion_1}')
+  print (f'El tiempo mínimo que dura el led 1 encendido es de {Tiempo_Duracion_3}')
+  print (f'El tiempo máximo que dura el led 2 encendido es de {Tiempo_Duracion_2}')
+  print (f'El tiempo mínimo que dura el LED 2 encendido es de {Tiempo_Duracion_4}')
+ #INTRODUCCIÓN
+ print ('Bienvenido a la calculadora del tiempo de encendido de un led controlado por un NE555')
+ print ('Para que circuito deseas realizar los cálculos?')
+ print ('NE555 MONOESTABLE (1)')
+ print ('NE555 ASTABLE (2)')
+ Seleccion_Calculo = int(input())
+
+ if Seleccion_Calculo == 1:
+  NE555_MONOESTABLE()
+
+ if Seleccion_Calculo == 2: 
+  print ('NE555 ASTABLE con resistencia variable (1)')
+  print ('NE555 ASTABLE sin resistencia variable (2)')
+  seleccion_2 = int(input())
+  if seleccion_2 == 1:
+   NE555_ASTABLE_POT_VARIABLE()
+  if seleccion_2 == 2:
+   NE555_ASTABLE_SIN_POT()
+ 
+if Seleccion ==11:
+  print("A que distancia estas del altavoz?")
+  distancia = int (input())
+  print ("Cúal es la potencia del altavoz en W?")
+  potencia = int (input())
+  print ("Cuantos dB hay a un m del altavoz?")
+  dB = int (input())
+  resultado_dB = dB - 20*(math.log(potencia,10)) + 10*(math.log(distancia,10))
+  print(f"A la distancia de = {distancia}  hay unos dB de = {resultado_dB}")
+ 

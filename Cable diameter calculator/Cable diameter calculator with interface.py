@@ -1,6 +1,6 @@
 #CABLE DIAMETER CALCULATOR WITH INTERACE
 import tkinter as tk
-window = tk.Tk(whit = 300)
+window = tk.Tk()
 Titulo = tk.Label (text = 'Calculadora del diametro de un cable', bg = 'Yellow')    
 Titulo.pack()
 Introduccion = tk.Label (text = 'Que valores tienes?')
@@ -51,6 +51,7 @@ def Potencia_Voltaje():
         Salida = tk.Label(text = f'Necesitas una sección de cable de {Calculo_Seccion}mm')
         Salida.pack()
     Calcular = tk.Button(text = 'Calcular', command = Calcular)
+    Calcular.pack()
 
 
 Eleccion_1 = tk.Button (text = 'Calcular seccion a partir de intensidad', command = Intensidad)

@@ -51,6 +51,7 @@ def Potencia_Voltaje():
         Salida = tk.Label(text = f'Necesitas una sección de cable de {Calculo_Seccion}mm')
         Salida.pack()
     Calcular = tk.Button(text = 'Calcular', command = Calcular)
+    Calcular.pack()
 
 
 Eleccion_1 = tk.Button (text = 'Calcular seccion a partir de intensidad', command = Intensidad)

@@ -2,6 +2,38 @@ import math
 from random import randint
 
 #PROGRAMAS
+
+def calculadora_longitud_onda():
+  print ('Bienvenido a la calculadora de longitud de onda')
+  print ('Introduce la frecuencia de la que deseas conocer su longitud de onda')
+
+  frecuencia = int(input())
+
+  print ('En que unidad está la frecuencia')
+  print ('(1) MHz')
+  print ('(2) KHz')
+  print ('(3) Hz')
+
+  unidad = int(input())
+
+
+  if unidad == 1:
+    calculo_Longitud = (3*(10**8)/(frecuencia*(10**6)))
+    print (f'La longitud de onda es de {calculo_Longitud}m')
+
+
+  if unidad == 2:
+    calculo_Longitud = (3*(10**8)/(frecuencia*(10**3)))
+    print (f'La longitud de onda es de {calculo_Longitud}m')
+
+  if unidad == 3:
+    calculo_Longitud = (3*(10**8)/(frecuencia))
+    print (f'La longitud de onda es de {calculo_Longitud}m')
+
+
+  print ('Made by theHLB100')
+
+
 def calcularondacompleta () :
  pi = 3.14159
  print ("¿Cúal es el voltaje de la fase 1?")
@@ -333,7 +365,8 @@ print("-Transformadores(7)")
 print("-Resolvedor de IP(8)")
 print ('Calculadora sección cable (9)')
 print ('NE555 (10)')
-print ('Calculadora pérdidas por distnacia (11)')
+print ('Calculadora pérdidas por distancia (11)')
+print ('Calculadora longitud de onda de una frecuencia (12)')
 
 #SELECCIÓN
 Seleccion = int(input())
@@ -354,7 +387,12 @@ if Seleccion ==7:
 if Seleccion ==8:
  calculate_subnet_info()
 if Seleccion ==9:
-  Calculadora_Seccion_Cable()
+   Calculadora_Seccion_Cable()
+
+if Seleccion ==12:
+  calculadora_longitud_onda()
+
+ 
 if Seleccion ==10:
  def NE555_MONOESTABLE():
   print ('Cúal es la capacidad del condensador en uF?')

@@ -229,6 +229,55 @@ def calculate_subnet_info():
     """
     print(result_string)
 
+def calculadora_Impedancia():
+ # CALCULADORA IMPEDANCIA CIRCUITO CONDENSADOR Y RESISTENCIA
+  def circuito_RC():
+    print('Introduce el valor de la resistencia en ohm')
+    resistencia = float(input())
+    print('Introduce la frecuencia en Hz')
+    frecuencia = float(input())
+    print('Introduce la capacidad del condensador en F')
+    capacidad = float(input())
+    impedancia_Condensador = (1/(math.pi*2*frecuencia*capacidad))
+    impedancia_Total = math.sqrt((resistencia**2)-(impedancia_Condensador**2))
+    print (f'La impedancia total del circuito es de {impedancia_Total}ohm')
+
+#CALCULADORA IMPEDANCIA CONDENSADOR EN CIRCUITO DE CORRIENTE ALTERNA
+  def condensador():
+    print('Introduce la frecuencia en Hz')
+    frecuencia = int(input())
+    print('Introduce la capacidad en F')
+    capacidad = int(input())
+    impedancia = (1/(math.pi*2*frecuencia*capacidad))
+    print (f'La impedancia del condensador es de {impedancia} ohm')
+
+#CALCULADORA IMPEDANCIA BOBINA EN CIRCUITO DE CORRIENTE ALTERNA
+  def bobina ():
+    print('Introduce la frecuencia en Hz')
+    frecuencia = int(input())
+    print ('Introduce el valor de la bobina en H')
+    reactancia = int(input())
+    impedancia= (math.pi*2*frecuencia*reactancia)
+    print (f'La impedancia de la bobina es de {impedancia}ohm')
+
+
+  #SELECCIONADOR E INTRO
+  print ('Bienvenido a la calculadora de impedancias!')
+  print ('Deseas conocer la impedancia de un condensador o de una bobina?')
+  print ('1- Condensador')
+  print ('2- Bobina')
+  print ('3- Circuito RC')
+  seleccion = int(input())
+
+  if seleccion ==1:
+    condensador()
+
+  if seleccion ==2:
+    bobina()
+
+  if seleccion ==3:
+    circuito_RC()
+
 #CABLE DIAMETER CALCULATOR
 def Intensidad_Voltaje():
  print ('Cuanta intensidad debe de circular por el cable?')
@@ -240,7 +289,7 @@ def Intensidad_Voltaje():
  Resistencia = 0.5/Intensidad
  Calculo_seccion = ((0.017*Longitud)/Resistencia)
  print (f'Tu cable necesita una seccion de {Calculo_seccion}')
-print ('Calculator made by TheHlb100')
+ print ('Calculator made by TheHlb100')
 
 def Potencia_Voltaje():
   print ('Cuanta potencia debe de circular por el cable?')
@@ -354,19 +403,20 @@ MMMMMMMMMWO:....................................................................
 '''
     )
 
-print("Que programa deseas ejecutar?")
-print("-Media onda (1)")
-print("-Onda completa (2)")
-print("-Multiplicación dos nºs (3)")
-print("-Calculadora de Vmax y Vef (4)")
-print("-Calculadora de perdidas por distancia en altavoces (5)")
-print("-Generador de IP Random (6)")
-print("-Transformadores(7)")
-print("-Resolvedor de IP(8)")
+print ("Que programa deseas ejecutar?")
+print ("-Media onda (1)")
+print ("-Onda completa (2)")
+print ("-Multiplicación dos nºs (3)")
+print ("-Calculadora de Vmax y Vef (4)")
+print ("-Calculadora de perdidas por distancia en altavoces (5)")
+print ("-Generador de IP Random (6)")
+print ("Transformadores(7)")
+print ("Resolvedor de IP(8)")
 print ('Calculadora sección cable (9)')
 print ('NE555 (10)')
 print ('Calculadora pérdidas por distancia (11)')
 print ('Calculadora longitud de onda de una frecuencia (12)')
+print ('Calculadora de impedancias (13) ')
 
 #SELECCIÓN
 Seleccion = int(input())
@@ -437,20 +487,20 @@ if Seleccion ==10:
   print (f'El tiempo mínimo que dura el led 1 encendido es de {Tiempo_Duracion_3}')
   print (f'El tiempo máximo que dura el led 2 encendido es de {Tiempo_Duracion_2}')
   print (f'El tiempo mínimo que dura el LED 2 encendido es de {Tiempo_Duracion_4}')
- #INTRODUCCIÓN
- print ('Bienvenido a la calculadora del tiempo de encendido de un led controlado por un NE555')
- print ('Para que circuito deseas realizar los cálculos?')
- print ('NE555 MONOESTABLE (1)')
- print ('NE555 ASTABLE (2)')
- Seleccion_Calculo = int(input())
+  #INTRODUCCIÓN
+  print ('Bienvenido a la calculadora del tiempo de encendido de un led controlado por un NE555')
+  print ('Para que circuito deseas realizar los cálculos?')
+  print ('NE555 MONOESTABLE (1)')
+  print ('NE555 ASTABLE (2)')
+  Seleccion_Calculo = int(input())
 
- if Seleccion_Calculo == 1:
-  NE555_MONOESTABLE()
+  if Seleccion_Calculo == 1:
+   NE555_MONOESTABLE()
 
- if Seleccion_Calculo == 2: 
-  print ('NE555 ASTABLE con resistencia variable (1)')
-  print ('NE555 ASTABLE sin resistencia variable (2)')
-  seleccion_2 = int(input())
+  if Seleccion_Calculo == 2: 
+   print ('NE555 ASTABLE con resistencia variable (1)')
+   print ('NE555 ASTABLE sin resistencia variable (2)')
+   seleccion_2 = int(input())
   if seleccion_2 == 1:
    NE555_ASTABLE_POT_VARIABLE()
   if seleccion_2 == 2:
@@ -464,5 +514,9 @@ if Seleccion ==11:
   print ("Cuantos dB hay a un m del altavoz?")
   dB = int (input())
   resultado_dB = dB - 20*(math.log(potencia,10)) + 10*(math.log(distancia,10))
-  print(f"A la distancia de = {distancia}  hay unos dB de = {resultado_dB}")
+  print(f"A la distancia de = {distancia}  hay unos dB de = {resultado_dB}") 
+
+if Seleccion ==13:
+  calculadora_Impedancia()
+
  
